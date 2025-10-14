@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.lostandfound.AdminPanelController"
+             prefWidth="950.0" prefHeight="600.0" style="-fx-background-color: #f5f7fa;">
+
+    <top>
+        <AnchorPane style="-fx-background-color: #dce8ff; -fx-padding: 15;">
+            <Label text="Admin Control Panel"
+                   layoutX="340" layoutY="5"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        </AnchorPane>
+    </top>
+
+    <center>
+        <VBox spacing="15" alignment="TOP_CENTER" style="-fx-padding: 20;">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="searchField" promptText="Search..."
+                           style="-fx-pref-width: 300; -fx-padding: 5;"/>
+                <ComboBox fx:id="statusFilter" promptText="All Status"
+                          style="-fx-pref-width: 150;"/>
+            </HBox>
+
+            <TableView fx:id="adminTable" prefHeight="400" prefWidth="800">
+                <columns>
+                    <TableColumn fx:id="nameCol" text="Name" prefWidth="140"/>
+                    <TableColumn fx:id="categoryCol" text="Category" prefWidth="140"/>
+                    <TableColumn fx:id="locationCol" text="Location" prefWidth="140"/>
+                    <TableColumn fx:id="statusCol" text="Status" prefWidth="140"/>
+                    <TableColumn fx:id="dateCol" text="Date" prefWidth="120"/>
+                    <TableColumn fx:id="actionsCol" text="Actions" prefWidth="120"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="20" alignment="CENTER">
+                <Button fx:id="editBtn" text="Edit"
+                        style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20 8 20; -fx-background-radius: 6;"/>
+                <Button fx:id="deleteBtn" text="Delete"
+                        style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20 8 20; -fx-background-radius: 6;"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>

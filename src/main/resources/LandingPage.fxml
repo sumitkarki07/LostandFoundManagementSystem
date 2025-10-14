@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f5f7fa;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.example.lostandfound.LandingPageController">
+
+    <!-- Top Header -->
+    <top>
+        <AnchorPane style="-fx-background-color: #dce8ff; -fx-padding: 15;">
+            <Label layoutX="250" layoutY="5" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Lost and Found Management System" />
+        </AnchorPane>
+    </top>
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" style="-fx-background-color: #eef2f7; -fx-padding: 20;">
+            <Button fx:id="dashboardBtn" maxWidth="140" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-font-weight: bold;" text="🏠 Dashboard" />
+            <Button fx:id="addLostBtn" maxWidth="140" style="-fx-background-color: white; -fx-text-fill: #0078D7; -fx-border-color: #0078D7; -fx-border-radius: 5; -fx-background-radius: 5;" text="+ Add Lost Item" />
+            <Button fx:id="addFoundBtn" maxWidth="140" style="-fx-background-color: white; -fx-text-fill: #0078D7; -fx-border-color: #0078D7; -fx-border-radius: 5; -fx-background-radius: 5;" text="📦 Add Found Item" />
+            <Region VBox.vgrow="ALWAYS" />
+            <Button fx:id="adminLoginBtn" maxWidth="140" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-font-weight: bold;" text="Admin Login" />
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="15" style="-fx-padding: 20;">
+            
+            <!-- Search and Filter Row -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <TextField fx:id="searchField" promptText="Search..." style="-fx-pref-width: 300; -fx-padding: 5;" />
+                <ComboBox fx:id="categoryFilter" promptText="All Categories" style="-fx-pref-width: 150;" />
+            </HBox>
+            
+            <!-- Table -->
+            <TableView fx:id="itemTable" prefHeight="350" prefWidth="650">
+                <columns>
+                    <TableColumn fx:id="nameCol" prefWidth="120" text="Name" />
+                    <TableColumn fx:id="categoryCol" prefWidth="120" text="Category" />
+                    <TableColumn fx:id="locationCol" prefWidth="120" text="Location" />
+                    <TableColumn fx:id="statusCol" prefWidth="120" text="Status" />
+                    <TableColumn fx:id="dateCol" prefWidth="120" text="Date" />
+                </columns>
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>
