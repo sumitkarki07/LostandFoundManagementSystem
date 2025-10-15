@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.lostandfound.AddFoundItemController"
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.teamlostandfound.AddFoundItemController"
              prefWidth="800.0" prefHeight="500.0" style="-fx-background-color: #f5f7fa;">
 
     <top>

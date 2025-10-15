@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f5f7fa;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.example.lostandfound.LandingPageController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f5f7fa;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.teamlostandfound.LandingPageController">
 
     <!-- Top Header -->
     <top>
