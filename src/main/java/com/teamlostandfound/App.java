@@ -13,6 +13,14 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         mainStage = stage;
+        try {
+            Database.initialize();
+            // Create default admin user
+            UserDao userDao = new UserDao();
+            userDao.createDefaultAdmin();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         loadScene("LandingPage.fxml", "Lost and Found System");
     }
 
