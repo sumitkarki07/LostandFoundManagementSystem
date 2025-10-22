@@ -5,39 +5,52 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/25.0.0"
+<VBox xmlns="http://javafx.com/javafx/26.0.0"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.teamlostandfound.LoginPanelController"
       alignment="CENTER" spacing="15"
       prefWidth="360" prefHeight="420"
       style="-fx-background-color: white; -fx-background-radius: 10;">
 
-    <!-- Header -->
-    <VBox alignment="CENTER" prefHeight="100"
-          style="-fx-background-color: #d8e7ff; -fx-background-radius: 10 10 0 0;">
-        <Label text="Lost and Found"
-               style="-fx-font-family: 'Arial'; -fx-font-size: 20; -fx-font-weight: bold;"/>
-        <Label text="Management System"
-               style="-fx-font-family: 'Arial'; -fx-font-size: 18; -fx-font-weight: bold;"/>
+    <!-- Top bar with Home button -->
+    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10;">
+        <Button fx:id="homeBtn"
+                text="Home"
+                onAction="#goHome"
+                prefWidth="70" prefHeight="30"
+                style="-fx-background-color: #a8c7ff; -fx-background-radius: 8; -fx-font-weight: bold; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- Header section -->
+    <VBox alignment="CENTER" prefHeight="100" spacing="5">
+        <Label text="Welcome Back"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Label text="Login to your account"
+               style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
     </VBox>
 
-    <!-- Login Title -->
-    <Label text="LOGIN"
-           style="-fx-font-family: 'Arial'; -fx-font-size: 18; -fx-font-weight: bold;"/>
+    <!-- Login Form -->
+    <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20;">
+        <TextField fx:id="usernameField"
+                   promptText="Username"
+                   prefWidth="250" prefHeight="35"
+                   style="-fx-background-radius: 6;"/>
+        <PasswordField fx:id="passwordField"
+                       promptText="Password"
+                       prefWidth="250" prefHeight="35"
+                       style="-fx-background-radius: 6;"/>
 
-    <!-- Username Field -->
-    <TextField fx:id="username" promptText="Username"
-               prefWidth="250" prefHeight="40"
-               style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-size: 14;"/>
+        <Button fx:id="loginBtn"
+                text="Login"
+                onAction="#handleLogin"
+                prefWidth="250" prefHeight="35"
+                style="-fx-background-color: #4a90e2; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;"/>
+    </VBox>
 
-    <!-- Password Field -->
-    <PasswordField fx:id="password" promptText="Password"
-                   prefWidth="250" prefHeight="40"
-                   style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-size: 14;"/>
-
-    <!-- Login Button -->
-    <Button text="Login" onAction="#handleLogin"
-            prefWidth="250" prefHeight="40"
-            style="-fx-background-color: #4a90e2; -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-background-radius: 6;"/>
+    <!-- Footer -->
+    <HBox alignment="CENTER">
+        <Label text="Forgot your password?"
+               style="-fx-text-fill: #3498db; -fx-font-size: 12px; -fx-cursor: hand;"/>
+    </HBox>
 
 </VBox>

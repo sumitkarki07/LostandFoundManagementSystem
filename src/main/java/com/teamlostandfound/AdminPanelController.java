@@ -1,5 +1,6 @@
 package com.teamlostandfound;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -28,6 +29,9 @@ public class AdminPanelController {
     private Button editBtn;
 
     @FXML
+    private Button homeBtn;
+
+    @FXML
     private TableColumn<?, ?> locationCol;
 
     @FXML
@@ -41,5 +45,10 @@ public class AdminPanelController {
 
     @FXML
     private ComboBox<?> statusFilter;
+
+    @FXML
+    void goHome(ActionEvent event) {
+
+    }
 
 }

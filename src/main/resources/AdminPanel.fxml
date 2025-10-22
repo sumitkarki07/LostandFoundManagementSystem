@@ -10,6 +10,10 @@
 
     <top>
         <AnchorPane style="-fx-background-color: #dce8ff; -fx-padding: 15;">
+        <Button fx:id="homeBtn" text="Home" layoutX="10" layoutY="8" prefWidth="70" prefHeight="30"
+                onAction="#goHome"
+                style="-fx-background-color: #a8c7ff; -fx-background-radius: 8; -fx-font-weight: bold; -fx-cursor: hand;"/>
+    
             <Label text="Admin Control Panel"
                    layoutX="340" layoutY="5"
                    style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>

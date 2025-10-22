@@ -1,5 +1,6 @@
 package com.teamlostandfound;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -19,6 +20,9 @@ public class AddLostItemController {
     private TextArea descriptionArea;
 
     @FXML
+    private Button homeBtn;
+
+    @FXML
     private TextField itemNameField;
 
     @FXML
@@ -26,5 +30,10 @@ public class AddLostItemController {
 
     @FXML
     private Button submitBtn;
+
+    @FXML
+    void goHome(ActionEvent event) {
+
+    }
 
 }
