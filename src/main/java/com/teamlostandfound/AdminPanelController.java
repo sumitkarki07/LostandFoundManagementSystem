@@ -48,7 +48,38 @@ public class AdminPanelController {
 
     @FXML
     void goHome(ActionEvent event) {
-
+        App.loadScene("LandingPage.fxml", "Landing Page");
     }
 
+    @FXML
+    private void initialize() {
+        // Start with buttons disabled
+        editBtn.setDisable(true);
+        deleteBtn.setDisable(true);
+
+        // Enable buttons when a row is selected
+        adminTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            boolean hasSelection = (newSelection != null);
+            editBtn.setDisable(!hasSelection);
+            deleteBtn.setDisable(!hasSelection);
+        });
+    }
+
+    @FXML
+    void onEdit(ActionEvent event) {
+        Object selected = adminTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            System.out.println("Edit item: " + selected);
+            // TODO: Implement edit functionality
+        }
+    }
+
+    @FXML
+    void onDelete(ActionEvent event) {
+        Object selected = adminTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            System.out.println("Delete item: " + selected);
+            // TODO: Implement delete functionality
+        }
+    }
 }

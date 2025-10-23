@@ -33,7 +33,7 @@ public class AddLostItemController {
 
     @FXML
     void goHome(ActionEvent event) {
-
+        App.loadScene("LandingPage.fxml", "Landing Page");
     }
 
 }

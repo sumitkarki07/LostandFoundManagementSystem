@@ -33,7 +33,7 @@ public class AddFoundItemController {
 
     @FXML
     void goHome(ActionEvent event) {
-
+        App.loadScene("LandingPage.fxml", "Landing Page");
     }
 
 }

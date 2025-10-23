@@ -5,13 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.teamlostandfound.AdminPanelController"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teamlostandfound.AdminPanelController"
              prefWidth="950.0" prefHeight="600.0" style="-fx-background-color: #f5f7fa;">
 
     <top>
         <AnchorPane style="-fx-background-color: #dce8ff; -fx-padding: 15;">
-        <Button fx:id="homeBtn" text="Home" layoutX="10" layoutY="8" prefWidth="70" prefHeight="30"
-                onAction="#goHome"
+        <Button fx:id="homeBtn" text="Home" onAction="#goHome" layoutX="10" layoutY="8" prefWidth="70" prefHeight="30"
                 style="-fx-background-color: #a8c7ff; -fx-background-radius: 8; -fx-font-weight: bold; -fx-cursor: hand;"/>
     
             <Label text="Admin Control Panel"
@@ -41,9 +40,9 @@
             </TableView>
 
             <HBox spacing="20" alignment="CENTER">
-                <Button fx:id="editBtn" text="Edit"
+                <Button fx:id="editBtn" text="Edit" onAction="#onEdit"
                         style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20 8 20; -fx-background-radius: 6;"/>
-                <Button fx:id="deleteBtn" text="Delete"
+                <Button fx:id="deleteBtn" text="Delete" onAction="#onDelete"
                         style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20 8 20; -fx-background-radius: 6;"/>
             </HBox>
         </VBox>

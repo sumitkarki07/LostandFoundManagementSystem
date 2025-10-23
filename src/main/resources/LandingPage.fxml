@@ -24,11 +24,11 @@
     <!-- Left Sidebar -->
     <left>
         <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" style="-fx-background-color: #eef2f7; -fx-padding: 20;">
-            <Button fx:id="dashboardBtn" maxWidth="140" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-font-weight: bold;" text="🏠 Dashboard" />
-            <Button fx:id="addLostBtn" maxWidth="140" style="-fx-background-color: white; -fx-text-fill: #0078D7; -fx-border-color: #0078D7; -fx-border-radius: 5; -fx-background-radius: 5;" text="+ Add Lost Item" />
-            <Button fx:id="addFoundBtn" maxWidth="140" style="-fx-background-color: white; -fx-text-fill: #0078D7; -fx-border-color: #0078D7; -fx-border-radius: 5; -fx-background-radius: 5;" text="📦 Add Found Item" />
+            <Button fx:id="dashboardBtn" onAction="#goToLandingPage" maxWidth="140" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-font-weight: bold;" text="🏠 Dashboard" />
+            <Button fx:id="addLostBtn" onAction="#goToAddLostItem" maxWidth="140" style="-fx-background-color: white; -fx-text-fill: #0078D7; -fx-border-color: #0078D7; -fx-border-radius: 5; -fx-background-radius: 5;" text="+ Add Lost Item" />
+            <Button fx:id="addFoundBtn" onAction="#goToAddFoundItem" maxWidth="140" style="-fx-background-color: white; -fx-text-fill: #0078D7; -fx-border-color: #0078D7; -fx-border-radius: 5; -fx-background-radius: 5;" text="📦 Add Found Item" />
             <Region VBox.vgrow="ALWAYS" />
-            <Button fx:id="adminLoginBtn" maxWidth="140" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-font-weight: bold;" text="Admin Login" />
+            <Button fx:id="adminLoginBtn" onAction="#goToLoginPanel" maxWidth="140" style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-font-weight: bold;" text="Admin Login" />
         </VBox>
     </left>
 
