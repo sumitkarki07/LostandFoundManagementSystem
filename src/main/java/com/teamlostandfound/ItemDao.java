@@ -23,6 +23,30 @@ public class ItemDao {
 		}
 	}
 
+	public void updateItem(int id, String name, String category, String location, String date, String description, String status, String contactName, String contactPhone) throws SQLException {
+		String sql = "UPDATE items SET name=?, category=?, location=?, date=?, description=?, status=?, contact_name=?, contact_phone=? WHERE id=?";
+		try (Connection connection = Database.getConnection(); PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, name);
+			ps.setString(2, category);
+			ps.setString(3, location);
+			ps.setString(4, date);
+			ps.setString(5, description);
+			ps.setString(6, status);
+			ps.setString(7, contactName);
+			ps.setString(8, contactPhone);
+			ps.setInt(9, id);
+			ps.executeUpdate();
+		}
+	}
+
+	public void deleteItem(int id) throws SQLException {
+		String sql = "DELETE FROM items WHERE id=?";
+		try (Connection connection = Database.getConnection(); PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, id);
+			ps.executeUpdate();
+		}
+	}
+
 	public List<String> listItemNames() throws SQLException {
 		String sql = "SELECT name FROM items ORDER BY id DESC";
 		List<String> names = new ArrayList<>();

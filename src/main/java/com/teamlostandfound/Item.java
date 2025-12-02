@@ -7,6 +7,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 public class Item {
     private final IntegerProperty id;
@@ -18,6 +20,7 @@ public class Item {
     private final StringProperty status;
     private final StringProperty contactName;
     private final StringProperty contactPhone;
+    private final BooleanProperty highlighted;
 
     public Item() {
         this.id = new SimpleIntegerProperty();
@@ -29,6 +32,7 @@ public class Item {
         this.status = new SimpleStringProperty();
         this.contactName = new SimpleStringProperty();
         this.contactPhone = new SimpleStringProperty();
+        this.highlighted = new SimpleBooleanProperty(false);
     }
 
     public Item(int id, String name, String category, String location, LocalDate date, String description, String status) {
@@ -41,6 +45,7 @@ public class Item {
         this.status = new SimpleStringProperty(status);
         this.contactName = new SimpleStringProperty();
         this.contactPhone = new SimpleStringProperty();
+        this.highlighted = new SimpleBooleanProperty(false);
     }
 
     public Item(int id, String name, String category, String location, LocalDate date, String description, String status, String contactName, String contactPhone) {
@@ -53,6 +58,7 @@ public class Item {
         this.status = new SimpleStringProperty(status);
         this.contactName = new SimpleStringProperty(contactName != null ? contactName : "");
         this.contactPhone = new SimpleStringProperty(contactPhone != null ? contactPhone : "");
+        this.highlighted = new SimpleBooleanProperty(false);
     }
 
     public int getId() {
@@ -161,6 +167,18 @@ public class Item {
 
     public StringProperty contactPhoneProperty() {
         return contactPhone;
+    }
+
+    public boolean isHighlighted() {
+        return highlighted.get();
+    }
+
+    public void setHighlighted(boolean value) {
+        highlighted.set(value);
+    }
+
+    public BooleanProperty highlightedProperty() {
+        return highlighted;
     }
 }
 
