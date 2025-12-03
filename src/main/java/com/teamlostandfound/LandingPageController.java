@@ -122,7 +122,8 @@ public class LandingPageController {
             ObservableList<Item> filteredItems = FXCollections.observableArrayList();
             
             for (Item item : allItems) {
-                if (item.getCategory() != null && 
+                if (item.isVisible() &&  // Add visible filter
+                    item.getCategory() != null && 
                     item.getCategory().equalsIgnoreCase(selectedCategory)) {
                     filteredItems.add(item);
                 }
@@ -140,8 +141,15 @@ public class LandingPageController {
         try {
             items.clear();
             List<Item> allItems = itemDao.getAllItems();
-            items.addAll(allItems);
-            itemTable.setItems(items);
+            
+            // Filter only visible items for the dashboard
+            for (Item item : allItems) {
+                if (item.isVisible()) {
+                    items.add(item);
+                }
+            }
+            
+            itemTable.setItems(items);  // Changed from tableView to itemTable
         } catch (SQLException e) {
             App.showAlert("Error loading items: " + e.getMessage());
         }
@@ -176,18 +184,17 @@ public class LandingPageController {
             return;
         }
         
-       
         String[] keywords = searchQuery.split("\\s+");
         
         try {
             items.clear();
             List<Item> allItems = itemDao.getAllItems();
             
-            
             ObservableList<Item> filteredItems = FXCollections.observableArrayList();
             
             for (Item item : allItems) {
-                if (matchesSearchCriteria(item, keywords, searchQuery)) {
+                if (item.isVisible() &&  // Add visible filter
+                    matchesSearchCriteria(item, keywords, searchQuery)) {
                     filteredItems.add(item);
                 }
             }
@@ -195,7 +202,6 @@ public class LandingPageController {
             items.addAll(filteredItems);
             itemTable.setItems(items);
             
-           
             if (filteredItems.isEmpty()) {
                 App.showAlert("No items found matching: " + searchQuery);
             }
@@ -203,20 +209,17 @@ public class LandingPageController {
             App.showAlert("Error searching items: " + e.getMessage());
         }
     }
-    
-  
+
     private boolean matchesSearchCriteria(Item item, String[] keywords, String fullQuery) {
         String name = item.getName() != null ? item.getName().toLowerCase() : "";
         String category = item.getCategory() != null ? item.getCategory().toLowerCase() : "";
         String location = item.getLocation() != null ? item.getLocation().toLowerCase() : "";
         String status = item.getStatus() != null ? item.getStatus().toLowerCase() : "";
         
-       
         if (name.contains(fullQuery) || category.contains(fullQuery) || 
             location.contains(fullQuery) || status.contains(fullQuery)) {
             return true;
         }
-        
         
         for (String keyword : keywords) {
             boolean keywordFound = name.contains(keyword) || 
@@ -224,7 +227,7 @@ public class LandingPageController {
                                   location.contains(keyword) || 
                                   status.contains(keyword);
             if (!keywordFound) {
-                return false; 
+                return false;
             }
         }
         

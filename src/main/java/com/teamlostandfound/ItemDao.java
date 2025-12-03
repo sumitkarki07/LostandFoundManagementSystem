@@ -59,7 +59,7 @@ public class ItemDao {
 	}
 
 	public List<Item> getAllItems() throws SQLException {
-		String sql = "SELECT id, name, category, location, date, description, status, contact_name, contact_phone FROM items ORDER BY id DESC";
+		String sql = "SELECT id, name, category, location, date, description, status, contact_name, contact_phone, visible FROM items ORDER BY id DESC";
 		List<Item> items = new ArrayList<>();
 		try (Connection connection = Database.getConnection(); 
 			 PreparedStatement ps = connection.prepareStatement(sql); 
@@ -69,17 +69,29 @@ public class ItemDao {
 				String name = rs.getString("name");
 				String category = rs.getString("category");
 				String location = rs.getString("location");
-				java.sql.Date sqlDate = rs.getDate("date");
-				LocalDate date = sqlDate != null ? sqlDate.toLocalDate() : null;
+				String date = rs.getString("date");
 				String description = rs.getString("description");
 				String status = rs.getString("status");
 				String contactName = rs.getString("contact_name");
 				String contactPhone = rs.getString("contact_phone");
-				items.add(new Item(id, name, category, location, date, description, status, contactName, contactPhone));
+				int visibleInt = rs.getInt("visible");
+				boolean visible = visibleInt == 1;
+				
+				Item item = new Item(id, name, category, location, java.time.LocalDate.parse(date), description, status, contactName, contactPhone, visible);
+				items.add(item);
 			}
 		}
 		return items;
 	}
+
+	public void updateItemVisibility(int itemId, boolean visible) throws SQLException {
+        String query = "UPDATE items SET visible = ? WHERE id = ?";
+        try (Connection connection = Database.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, visible ? 1 : 0);
+            stmt.setInt(2, itemId);
+            stmt.executeUpdate();
+        }
+    }
 }
 
 

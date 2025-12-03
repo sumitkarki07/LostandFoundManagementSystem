@@ -110,7 +110,68 @@ public class AdminPanelController {
             return new javafx.beans.property.SimpleStringProperty("");
         });
         
-        actionsCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(""));
+        // Add action buttons to the Actions column
+        actionsCol.setCellFactory(column -> new javafx.scene.control.TableCell<Item, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || getTableRow() == null || getTableRow().getItem() == null) {
+                    setGraphic(null);
+                } else {
+                    Item rowItem = getTableRow().getItem();
+                    Button actionBtn = new Button();
+                    
+                    // Set button text based on visibility
+                    if (rowItem.isVisible()) {
+                        actionBtn.setText("Mark Solve");
+                        actionBtn.setStyle("-fx-font-size: 11; -fx-padding: 8; -fx-text-fill: white; -fx-background-color: #51cf66;");
+                    } else {
+                        actionBtn.setText("Solved");
+                        actionBtn.setStyle("-fx-font-size: 11; -fx-padding: 8; -fx-text-fill: white; -fx-background-color: #868e96;");
+                    }
+                    
+                    actionBtn.setOnAction(e -> markItemAsFound(rowItem));
+                    setGraphic(actionBtn);
+                }
+            }
+        });
+    }
+
+    private void markItemAsFound(Item item) {
+        boolean currentlyVisible = item.isVisible();
+        String action = currentlyVisible ? "Mark as Solved" : "Mark as Unsolved";
+        String message = currentlyVisible ? 
+            "Mark '" + item.getName() + "' as SOLVED?\n\nIt will be hidden from the public dashboard." :
+            "Mark '" + item.getName() + "' as UNSOLVED?\n\nIt will be visible on the public dashboard again.";
+        
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle(action);
+        confirm.setHeaderText(action);
+        confirm.setContentText(message);
+        Optional<ButtonType> result = confirm.showAndWait();
+        
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                boolean newVisibility = !currentlyVisible;
+                itemDao.updateItemVisibility(item.getId(), newVisibility);
+                item.setVisible(newVisibility);
+                
+                // Update status based on visibility
+                if (newVisibility) {
+                    item.setStatus("UNSOLVED");
+                } else {
+                    item.setStatus("SOLVED");
+                }
+                
+                adminTable.refresh();
+                String resultMsg = newVisibility ? 
+                    "Item marked as UNSOLVED and visible on dashboard." :
+                    "Item marked as SOLVED and hidden from dashboard.";
+                App.showAlert(resultMsg);
+            } catch (SQLException e) {
+                App.showAlert("Error updating item: " + e.getMessage());
+            }
+        }
     }
 
     private void setupRowFactory() {
@@ -392,5 +453,4 @@ public class AdminPanelController {
 
         return true;
 }
-
 }

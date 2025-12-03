@@ -22,6 +22,8 @@ public class Item {
     private final StringProperty contactPhone;
     private final BooleanProperty highlighted;
 
+    private boolean visible = true;
+
     public Item() {
         this.id = new SimpleIntegerProperty();
         this.name = new SimpleStringProperty();
@@ -59,6 +61,20 @@ public class Item {
         this.contactName = new SimpleStringProperty(contactName != null ? contactName : "");
         this.contactPhone = new SimpleStringProperty(contactPhone != null ? contactPhone : "");
         this.highlighted = new SimpleBooleanProperty(false);
+    }
+
+    public Item(int id, String name, String category, String location, LocalDate date, String description, String status, String contactName, String contactPhone, boolean visible) {
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.category = new SimpleStringProperty(category);
+        this.location = new SimpleStringProperty(location);
+        this.date = new SimpleObjectProperty<>(date);
+        this.description = new SimpleStringProperty(description);
+        this.status = new SimpleStringProperty(status);
+        this.contactName = new SimpleStringProperty(contactName != null ? contactName : "");
+        this.contactPhone = new SimpleStringProperty(contactPhone != null ? contactPhone : "");
+        this.highlighted = new SimpleBooleanProperty(false);
+        this.visible = visible;
     }
 
     public int getId() {
@@ -179,6 +195,14 @@ public class Item {
 
     public BooleanProperty highlightedProperty() {
         return highlighted;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }
 
